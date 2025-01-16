@@ -1,7 +1,34 @@
 use std::io::Write;
 
+fn fall_sem_tekur_eignarhald(texti: String) {
+    println!("{}", texti)
+}
+
+fn fall_sem_faer_lanad(texti: &String) {
+    println!("{}", texti)
+}
+
+fn fall_sem_skilar_eingarhaldi(texti: String) -> String {
+    println!("{}", texti);
+    texti // eða return texti;
+}
+
 fn main() {
+    // let s1 = "Hallo";
+    let mut s1 = "Hallo".to_string();
+    //fall_sem_tekur_eignarhald(s1);
+    //fall_sem_faer_lanad(&s1);
+    s1 = fall_sem_skilar_eingarhaldi(s1);
+    println!("{}", s1);
+
+    //let s2 = &mut s1;
+    //println!("{}", s2);
+    //let s3 = &s1;
+    //println!("{}", s3);
+
+
     // Fyrir skilaverkefni
+    /* 
     println!("Sláðu inn tölu: ");
     std::io::stdout().flush().expect("Gat ekki flush-að");
     let mut inntak = String::new();
@@ -10,7 +37,7 @@ fn main() {
     if inntak == "1" {
         // gera eitthvað
     }
-
+*/
 
 /*  
     let mut fylki = Box::new([0_i128; 1_000_000]);
