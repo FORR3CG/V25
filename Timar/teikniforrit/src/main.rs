@@ -25,17 +25,31 @@ enum Teikniform {
 impl Teikniform {
     fn teikna(&self) {
         match self {
-            Teikniform::Punktur(point) => todo!(),
-            Teikniform::Lina { p1, p2 } => todo!(),
-            Teikniform::Kassi { upphaf, breidd, haed } => todo!(),
-            Teikniform::Hringur { upphaf, radius } => todo!(),
+            Teikniform::Punktur(point) 
+                => println!("Teikna punkt í {}", point),
+            Teikniform::Lina { p1, p2 } 
+                => println!("Teikna línu frá {} til {}", p1, p2),
+            Teikniform::Kassi { upphaf, breidd, haed } 
+                => println!("Teikna kassa í {}, h: {}, b: {}", upphaf, haed, breidd),
+            Teikniform::Hringur { upphaf, radius } 
+                => println!("Teikna hring í {}, r: {}", upphaf, radius),
         }
     }
 }
 
 fn main() {
     let p = Point(10, 20);
-    let strengur = p.to_string();
     println!("{}", p);
-    println!("Hello, world!");
+    let strengur = p.to_string();
+    let p = Teikniform::Punktur(Point::new(10, 20));
+    let l = Teikniform::Lina 
+            { p1: Point::new(10, 10), p2: Point::new(20,20) };
+    let h = Teikniform::Hringur 
+            { upphaf: Point::new(30,30), radius: 25.3 };
+    let k = Teikniform::Kassi 
+            { upphaf: Point(10,10), breidd: 35, haed: 20 };
+    let t = [p, l, h, k];
+    for tf in t {
+        tf.teikna();
+    }
 }
