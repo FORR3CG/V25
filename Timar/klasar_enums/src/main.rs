@@ -22,4 +22,6 @@ fn main() {
     bmw.breyta_orkugjafa("rafmagn");
     println!("{}", bmw);
     println!("{}", toyota);
+    let og_1 = Orkugjafi::from("b");
+    let og_2 = Orkugjafi::from(3);
 }

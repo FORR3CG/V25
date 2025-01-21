@@ -17,6 +17,16 @@ impl Gerd {
     }
 }
 
+impl From<&str> for Gerd {
+    fn from(value: &str) -> Self {
+        match value.to_lowercase().trim() {
+            "fb" | "fólksbíll" => Self::Folksbill,
+            "jeppi" => Self::Jeppi,
+            _ => Self::Annad,
+        }
+    }
+}
+
 impl Display for Gerd {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         let gerd = match self {

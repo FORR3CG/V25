@@ -24,9 +24,9 @@ impl Bill {
         Self {
             id,
             tegund: tegund.to_string(),
-            gerd: Gerd::new(gerd),
+            gerd: Gerd::from(gerd),
             litur: Litur::new(r, g, b),
-            orkugjafi: Orkugjafi::new(orka),
+            orkugjafi: Orkugjafi::from(orka),
         }
     }
 
