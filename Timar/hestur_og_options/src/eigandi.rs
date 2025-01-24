@@ -1,3 +1,4 @@
+use core::net;
 use std::fmt::Display;
 
 #[derive(Debug)]
@@ -12,6 +13,10 @@ impl Eigandi {
             nafn: nafn.to_string(),
             netfang: netfang.to_string(),
         }
+    }
+
+    pub fn breyta_netfangi(&mut self, netfang: &str) {
+        self.netfang = netfang.to_string()
     }
 }
 
