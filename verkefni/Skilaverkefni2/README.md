@@ -20,6 +20,8 @@ Gerðu forrit til að skrá **Herbergi** í skólanum, herbergi geta verið *Ken
 
 Útfærðu svo `Display` og `From` eftir þörfum.
 
+Hafðu sér skrá fyrir hvert struct og enum.
+
 Dæmi um notkun:
 ```rust
     let mut h202 = Herbergi::new(4.3, 3.7, Tegund::Kennslustofa, None);
@@ -31,4 +33,4 @@ Dæmi um notkun:
     // Stærð: 32.33 fm., tegund: Tegund: Kennslustofa, Tölva: HDD: 1000 GB, RAM 16 GB, CPU: RISC
 ```
 
-Skilist á Innu.
+Skilaðu öllum .rs skránum á Innu.
