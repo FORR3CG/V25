@@ -3,7 +3,6 @@
 - **Verkefnið er einstaklingsverkefni**. Ef tveir eða fleiri nemendur skila sömu lausnunum er gefið 0 (núll) fyrir þær lausnir.
 - **Ef kóði er tekinn af netinu** (eða öðrum álíka stöðum) skal taka það fram, benda á hvaðan hann kemur og skrifa skýringar (e. comment) við hverja línu kóðans. Sé það ekki gert verður gefið 0 (núll) fyrir verkefnið í heild.
 - **Frjálst val er** um að skrifa skýringar við kóðann, að öðru leiti en þar sem liðurinn hér að ofan kallar á, en þú þarft að geta útskýrt hverja línu kóðans nákvæmlega ef beðið er um. Geti nemandi ekki útskýrt eitthvað í kóðanum sem skilað er er gefið 0 (núll) fyrir verkefnið.
-- **Notið** eingöngu þær aðferðir sem kynntar hafa verið í fyrstu sex köflum bókarinnar við lausn verkefnisins.
 
 ## Verkefnið
 
