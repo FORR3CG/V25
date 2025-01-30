@@ -18,10 +18,14 @@ impl Bill {
             verd,
         }
     }
+
+    pub fn verd(&self) -> u32 {
+        self.verd
+    }
 }
 
 impl Display for Bill {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
         write!(f, "id: {}, frml.: {}, gerð: {}, verð: {}",
                    self.id, self.framleidandi, self.gerd, self.verd)
     }
