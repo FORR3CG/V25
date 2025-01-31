@@ -3,9 +3,9 @@ use std::fmt::Display;
 use crate::gerd::Gerd;
 
 pub struct Bill {
-    id: u32,
+    pub id: u32,
     framleidandi: String,
-    gerd: Gerd,
+    pub gerd: Gerd,
     verd: u32,
 }
 

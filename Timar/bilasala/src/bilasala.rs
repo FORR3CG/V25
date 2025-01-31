@@ -1,6 +1,7 @@
 use std::fmt::Display;
 
 use crate::bill::Bill;
+use crate::gerd::Gerd;
 
 pub struct Bilasala {
     bilar: Vec<Bill>,
@@ -31,6 +32,42 @@ impl Bilasala {
            heildar_verd += bill.verd() as u64; 
         }
         heildar_verd
+    }
+
+    pub fn afskra(&mut self, id: u32) {
+        let mut eyda_id = -1_i32;
+        let mut idx = 0;
+        for bill in &self.bilar {
+            if bill.id == id {
+                eyda_id = idx;
+                break;
+            }
+            idx += 1;
+        }
+        if eyda_id != -1 {
+            self.bilar.swap_remove(idx as usize);
+        } else {
+            println!("Fann engan bíl með id: {}", id);
+        }
+    }
+
+    pub fn prenta_bil(&self, id: u32) {
+        for bill in &self.bilar {
+            if bill.id == id {
+                println!("{}", bill);
+                return;
+            }
+        }
+        println!("Fann engan bíl með id: {}", id)
+    }
+
+    pub fn prenta_gerd(&self, gerd: &str) {
+        let gerd = Gerd::from(gerd);
+        for bill in &self.bilar {
+            if bill.gerd == gerd {
+                println!("{}", bill);
+            }
+        }
     }
 }
 
