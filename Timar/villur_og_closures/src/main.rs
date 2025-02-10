@@ -27,7 +27,22 @@ fn deiling(a: i32, b: i32) -> Result<i32, String> {
     Ok(k)
 }
 
+// fn leggja_saman(a: i32, b: i32) -> i32 { a + b }
+
 fn main() {
+    let leggja_saman = |a: i32, b: i32| a + b;
+
+    println!("{}", leggja_saman(10, 20));
+
+    let mut v = vec![1,2,3,4,5];
+
+    v.iter().for_each(|s| println!("{}", s));
+    
+    for s in &v {
+        println!("{}", s);
+    }
+
+
     let a = 11;
     let b = 0;
     let c = deila(a, b);
