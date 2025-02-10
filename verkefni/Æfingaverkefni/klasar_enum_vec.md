@@ -31,6 +31,8 @@ Hestaleiga: breyta_stodu: Fann engan hest með id: 1005
 id: 1001, nafn: Grána, aldur: 10, staða: Leigður
 id: 1002, nafn: Blésa, aldur: 3, staða: Ekki til útleigu
 id: 1003, nafn: Sleipnir, aldur: 15, staða: Laus
+>>> hætta
+Takk fyrir!
 ```
 
 # Lausn
