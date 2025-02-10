@@ -5,8 +5,10 @@ mod bilasala;
 use std::io::Write;
 
 use bilasala::Bilasala;
+use gerd::Gerd;
 
 fn main() {
+    let g = Gerd::try_from("fb");
     let mut bs = Bilasala::new(1000);
     bs.skra("BMW", "f", 1_250_000);
     bs.skra("Toyota", "j", 12_345_673);
@@ -40,7 +42,11 @@ fn main() {
                         let framleidandi = skipanir[1];
                         let gerd = skipanir[2];
                         if let Ok(verd) = skipanir[3].parse::<u32>() {
-                            bs.skra(framleidandi, gerd, verd);
+                            match bs.skra(framleidandi, gerd, verd) {
+                                Ok(_) => println!("Skráði nýjan bíl"),
+                                Err(e) => println!("{}", e),
+                            }
+                            
                         } else {
                             println!("Gat ekki breytt {} í tölu", skipanir[3]);
                         }
@@ -64,7 +70,10 @@ fn main() {
                                 "allt" => println!("{}", bs),
                                 "gerð" => {
                                     if let Some(gerd) = skipanir.get(2) {
-                                        bs.prenta_gerd(gerd);
+                                        match bs.prenta_gerd(gerd) {
+                                            Ok(_) => (),
+                                            Err(e) => println!("{}", e),
+                                        }
                                     } else {
                                         println!("Þú verður að segja hvaða gerð þú villt!");
                                     }

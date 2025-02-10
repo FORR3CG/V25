@@ -4,7 +4,6 @@ use std::fmt::Display;
 pub enum Gerd {
     Folksbill,
     Jeppi,
-    Annad,
 }
 
 impl Display for Gerd {
@@ -12,17 +11,19 @@ impl Display for Gerd {
         match self {
             Gerd::Folksbill => write!(f, "Fólksbíll"),
             Gerd::Jeppi => write!(f, "Jeppi"),
-            Gerd::Annad => write!(f, "Annað"),
         }
     }
 }
 
-impl From<&str> for Gerd {
-    fn from(value: &str) -> Self {
+impl TryFrom<&str> for Gerd {
+    type Error = String;
+    
+    fn try_from(value: &str) -> Result<Self, Self::Error> {
         match value.to_lowercase().trim() {
-            "f" | "fb" | "fólksbíll" => Self::Folksbill,
-            "j" => Self::Jeppi,
-            _ => Self::Annad
+            "f" | "fb" => Ok(Self::Folksbill),
+            "j" => Ok(Self::Jeppi),
+            _ => Err(format!("Get ekki breytt {} í gerð!", value))
         }
     }
+    
 }

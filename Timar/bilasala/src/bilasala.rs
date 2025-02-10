@@ -21,9 +21,10 @@ impl Bilasala {
         self.id
     }
 
-    pub fn skra(&mut self, framleidandi: &str, gerd: &str, verd: u32) {
+    pub fn skra(&mut self, framleidandi: &str, gerd: &str, verd: u32) -> Result<(), String> {
         let nytt_id = self.next_id();
-        self.bilar.push(Bill::new(nytt_id, framleidandi, gerd, verd))
+        Ok(self.bilar.push(Bill::new(nytt_id, framleidandi, gerd, verd)?))
+        
     }
 
     pub fn verdmaeti(&self) -> u64 {
@@ -61,13 +62,14 @@ impl Bilasala {
         println!("Fann engan bíl með id: {}", id)
     }
 
-    pub fn prenta_gerd(&self, gerd: &str) {
-        let gerd = Gerd::from(gerd);
+    pub fn prenta_gerd(&self, gerd: &str) -> Result<(), String> {
+        let gerd = Gerd::try_from(gerd)?;
         for bill in &self.bilar {
             if bill.gerd == gerd {
                 println!("{}", bill);
             }
         }
+        Ok(())
     }
 }
 

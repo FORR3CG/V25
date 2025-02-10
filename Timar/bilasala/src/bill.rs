@@ -10,13 +10,13 @@ pub struct Bill {
 }
 
 impl Bill {
-    pub fn new(id: u32, framleidandi: &str, gerdin: &str, verd: u32) -> Self {
-        Self {
+    pub fn new(id: u32, framleidandi: &str, gerdin: &str, verd: u32) -> Result<Self, String> {
+        Ok(Self {
             id,
             framleidandi: framleidandi.to_string(),
-            gerd: Gerd::from(gerdin), 
+            gerd: Gerd::try_from(gerdin)?, 
             verd,
-        }
+        })
     }
 
     pub fn verd(&self) -> u32 {
