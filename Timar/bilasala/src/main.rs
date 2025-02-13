@@ -34,6 +34,7 @@ fn main() {
                 match skipun.to_lowercase().trim() {
                    "hætta" => break, 
                    "hjálp" | "h" => println!("Prentum út hjálpina."),
+                   // TODO: bæta við breyta 
                    "skrá" => {
                         if skipanir.len() != 4 {
                             println!("Ekki réttur fjöldi orða til að búa til bíl!");
@@ -54,6 +55,7 @@ fn main() {
                    "afskrá" | "selja" => {
                         if let Some(id) = skipanir.get(1) {
                             if let Ok(id) = id.trim().parse::<u32>() {
+                                // TODO: breyta í samræmi við breytt fall
                                 bs.afskra(id);
                             } else {
                                 println!("Gat ekki breytt {} í tölu", skipanir[1]);
@@ -82,6 +84,7 @@ fn main() {
                                     // prenta bíl 1001
                                     if let Some(id) = skipanir.get(2) {
                                         if let Ok(id) = id.parse::<u32>() {
+                                            // TODO: breyta í samræmi við breytt fall
                                             bs.prenta_bil(id);
                                         } else {
                                             println!("Gat ekki breytt {} í tölu!", skipanir[2]);

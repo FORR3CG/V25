@@ -9,6 +9,8 @@ pub struct Bill {
     verd: u32,
 }
 
+// TODO: Bæta við Eq, PartialEq, Ord og PartialOrd
+
 impl Bill {
     pub fn new(id: u32, framleidandi: &str, gerdin: &str, verd: u32) -> Result<Self, String> {
         Ok(Self {

@@ -24,7 +24,7 @@ impl Bilasala {
     pub fn skra(&mut self, framleidandi: &str, gerd: &str, verd: u32) -> Result<(), String> {
         let nytt_id = self.next_id();
         Ok(self.bilar.push(Bill::new(nytt_id, framleidandi, gerd, verd)?))
-        
+        // TODO: bæta við röðun
     }
 
     pub fn verdmaeti(&self) -> u64 {
@@ -33,6 +33,8 @@ impl Bilasala {
            heildar_verd += bill.verd() as u64; 
         }
         heildar_verd
+
+        // TODO: breyta í iter
     }
 
     pub fn afskra(&mut self, id: u32) {
@@ -50,6 +52,8 @@ impl Bilasala {
         } else {
             println!("Fann engan bíl með id: {}", id);
         }
+
+        // TODO: breyta í iter
     }
 
     pub fn prenta_bil(&self, id: u32) {
@@ -60,6 +64,8 @@ impl Bilasala {
             }
         }
         println!("Fann engan bíl með id: {}", id)
+
+        // TODO: breyta í iter og losna við println
     }
 
     pub fn prenta_gerd(&self, gerd: &str) -> Result<(), String> {
@@ -70,7 +76,11 @@ impl Bilasala {
             }
         }
         Ok(())
+
+        // TODO: breyta í iter og losna við println
     }
+
+    // TODO: bæta við falli til að breyta verði allra bílanna
 }
 
 impl Display for Bilasala {
@@ -82,6 +92,8 @@ impl Display for Bilasala {
         let medalverd = self.verdmaeti() as f32 / self.bilar.len() as f32;
         texti.push_str(format!("Heildar verðmæti: {}, meðalverð: {:.2}", 
                                        self.verdmaeti(), medalverd).as_str());  
-        writeln!(f, "{}", texti)    
+        writeln!(f, "{}", texti)   
+
+        // TODO: breyta í iter 
     }
 }
