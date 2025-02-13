@@ -14,5 +14,9 @@ impl Display for Hestur {
 }
 
 fn main() {
-    
+    let mut hestar: Vec<Hestur> = Vec::new();
+    hestar.push(Hestur {id: 99, nafn: "Sæla".to_string(), aldur: 14});
+    hestar.push(Hestur {id: 23, nafn: "Blési".to_string(), aldur: 9});
+    hestar.push(Hestur {id: 45, nafn: "Rauður".to_string(), aldur: 11});
+    hestar.push(Hestur {id: 21, nafn: "Sæla".to_string(), aldur: 13});   
 }
