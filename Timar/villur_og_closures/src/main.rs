@@ -18,8 +18,8 @@ fn deiling(a: i32, b: i32) -> Result<i32, String> {
         return Err("Deiling: a má ekki vera stærra en 10!".to_string());
     }
     let mut k = deila(a, b)?;
-/*     let mut k = match  {
-        Ok(t) => return t,
+/*     let mut k = match deila(a, b)  {
+        Ok(t) => t,
         Err(e) => return Err(e),
     }; */
     // gerum eitthvað meira
