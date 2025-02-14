@@ -127,7 +127,7 @@ impl Display for Bilasala {
                                     .join("\n");
 
         let medalverd = self.verdmaeti() as f32 / self.bilar.len() as f32;
-        texti.push_str(format!("Heildar verðmæti: {}, meðalverð: {:.2}", 
+        texti.push_str(format!("\nHeildar verðmæti: {}, meðalverð: {:.2}", 
                                        self.verdmaeti(), medalverd).as_str());  
         writeln!(f, "{}", texti)   
     }

@@ -11,6 +11,8 @@ fn main() {
     let g = Gerd::try_from("fb");
     let mut bs = Bilasala::new(1000);
     bs.skra("BMW", "f", 1_250_000);
+    bs.skra("BMW", "f", 1_350_000);
+    bs.skra("BMW", "f", 1_150_000);
     bs.skra("Toyota", "j", 12_345_673);
     bs.skra("Nissan", "veit ekki", 650);
     println!("{}", bs);
@@ -34,7 +36,17 @@ fn main() {
                 match skipun.to_lowercase().trim() {
                    "hætta" => break, 
                    "hjálp" | "h" => println!("Prentum út hjálpina."),
-                   // TODO: bæta við breyta 
+                   "breyta" => {
+                        if let Some(prosenta) = skipanir.get(1) {
+                            if let Ok(prosenta) = prosenta.parse::<f32>() {
+                                bs.breyta_verdi(prosenta);
+                            } else {
+                                println!("Gat ekki breytt {} í tölu!", prosenta)
+                            }
+                        } else {
+                            println!("Það vantar prósentuna!")
+                        }
+                    },
                    "skrá" => {
                         if skipanir.len() != 4 {
                             println!("Ekki réttur fjöldi orða til að búa til bíl!");
@@ -55,8 +67,9 @@ fn main() {
                    "afskrá" | "selja" => {
                         if let Some(id) = skipanir.get(1) {
                             if let Ok(id) = id.trim().parse::<u32>() {
-                                // TODO: breyta í samræmi við breytt fall
-                                bs.afskra(id);
+                                if let Err(villa) = bs.afskra(id) {
+                                    println!("{}", villa)
+                                }
                             } else {
                                 println!("Gat ekki breytt {} í tölu", skipanir[1]);
                                 continue;
@@ -73,7 +86,7 @@ fn main() {
                                 "gerð" => {
                                     if let Some(gerd) = skipanir.get(2) {
                                         match bs.prenta_gerd(gerd) {
-                                            Ok(_) => (),
+                                            Ok(bilar) => bilar.iter().for_each(|bill| println!("{}", bill)),
                                             Err(e) => println!("{}", e),
                                         }
                                     } else {
@@ -84,8 +97,10 @@ fn main() {
                                     // prenta bíl 1001
                                     if let Some(id) = skipanir.get(2) {
                                         if let Ok(id) = id.parse::<u32>() {
-                                            // TODO: breyta í samræmi við breytt fall
-                                            bs.prenta_bil(id);
+                                            match bs.prenta_bil(id) {
+                                                Ok(bill) => println!("{}", bill),
+                                                Err(villa) => println!("{}", villa),
+                                            }
                                         } else {
                                             println!("Gat ekki breytt {} í tölu!", skipanir[2]);
                                         }
