@@ -23,8 +23,10 @@ impl Bilasala {
 
     pub fn skra(&mut self, framleidandi: &str, gerd: &str, verd: u32) -> Result<(), String> {
         let nytt_id = self.next_id();
-        Ok(self.bilar.push(Bill::new(nytt_id, framleidandi, gerd, verd)?))
+        self.bilar.push(Bill::new(nytt_id, framleidandi, gerd, verd)?);
         // TODO: bæta við röðun
+        self.bilar.sort();
+        Ok(())
     }
 
     pub fn verdmaeti(&self) -> u64 {
