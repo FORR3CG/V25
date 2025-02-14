@@ -1,3 +1,4 @@
+use std::backtrace;
 use std::fmt::Display;
 
 use crate::bill::Bill;
@@ -24,23 +25,25 @@ impl Bilasala {
     pub fn skra(&mut self, framleidandi: &str, gerd: &str, verd: u32) -> Result<(), String> {
         let nytt_id = self.next_id();
         self.bilar.push(Bill::new(nytt_id, framleidandi, gerd, verd)?);
-        // TODO: bæta við röðun
         self.bilar.sort();
         Ok(())
     }
 
     pub fn verdmaeti(&self) -> u64 {
-        let mut heildar_verd = 0_u64;
+/*         let mut heildar_verd = 0_u64;
         for bill in &self.bilar {
            heildar_verd += bill.verd() as u64; 
         }
-        heildar_verd
+        heildar_verd */
 
-        // TODO: breyta í iter
+        self
+            .bilar
+            .iter()
+            .fold(0, |summa, bill| summa + bill.verd as u64)
     }
 
-    pub fn afskra(&mut self, id: u32) {
-        let mut eyda_id = -1_i32;
+    pub fn afskra(&mut self, id: u32) -> Result<(), String> {
+/*         let mut eyda_id = -1_i32;
         let mut idx = 0;
         for bill in &self.bilar {
             if bill.id == id {
@@ -53,49 +56,79 @@ impl Bilasala {
             self.bilar.swap_remove(idx as usize);
         } else {
             println!("Fann engan bíl með id: {}", id);
-        }
+        } */
 
-        // TODO: breyta í iter
+        if let Some(idx) = self.bilar.iter().position(|bill| bill.id == id) {
+            self.bilar.remove(idx);
+            Ok(())
+        } else {
+            Err(format!("Fann ekki bíl með id: {}", id))
+        }
     }
 
-    pub fn prenta_bil(&self, id: u32) {
-        for bill in &self.bilar {
+    pub fn prenta_bil(&self, id: u32) -> Result<&Bill, String> {
+/*         for bill in &self.bilar {
             if bill.id == id {
                 println!("{}", bill);
                 return;
             }
         }
-        println!("Fann engan bíl með id: {}", id)
+        println!("Fann engan bíl með id: {}", id) */
 
-        // TODO: breyta í iter og losna við println
+
+/*         match self.bilar.iter().find(|bill| bill.id == id) {
+            Some(b) => Ok(b),
+            None => Err(format!("Fann ekki bíl með id: {}", id)),
+        } */
+       // EÐA
+       self
+          .bilar
+          .iter()
+          .find(|b| b.id == id)
+          .ok_or(format!("Fann ekki bíl með id: {}", id))
     }
 
-    pub fn prenta_gerd(&self, gerd: &str) -> Result<(), String> {
-        let gerd = Gerd::try_from(gerd)?;
+    pub fn prenta_gerd(&self, gerd: &str) -> Result<Vec<&Bill>, String> {
+/*         let gerd = Gerd::try_from(gerd)?;
         for bill in &self.bilar {
             if bill.gerd == gerd {
                 println!("{}", bill);
             }
         }
-        Ok(())
+        Ok(()) */
 
-        // TODO: breyta í iter og losna við println
+        let gerd = Gerd::try_from(gerd)?;
+        Ok(
+            self
+            .bilar
+            .iter()
+            .filter(|b| b.gerd == gerd)
+            .collect()
+        )
+
     }
 
-    // TODO: bæta við falli til að breyta verði allra bílanna
+    pub fn breyta_verdi(&mut self, prosentubreyting: f32) {
+        self
+            .bilar
+            .iter_mut()
+            .for_each(|b| 
+                b.verd = (b.verd as f32 * (1. + prosentubreyting / 100.)) as u32)
+    }
 }
 
 impl Display for Bilasala {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        let mut texti = String::new();
-        for bill in &self.bilar {
-            texti.push_str(format!("{}\n", bill).as_str());
-        }
+        let mut texti = self
+                                    .bilar
+                                    .iter()
+                                    .map(|b| b.to_string())
+                                    .collect::<Vec<String>>()
+                                    .join("\n");
+
         let medalverd = self.verdmaeti() as f32 / self.bilar.len() as f32;
         texti.push_str(format!("Heildar verðmæti: {}, meðalverð: {:.2}", 
                                        self.verdmaeti(), medalverd).as_str());  
         writeln!(f, "{}", texti)   
-
-        // TODO: breyta í iter 
     }
 }
