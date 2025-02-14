@@ -30,18 +30,18 @@ skrá tf-ice 200 500
 skrá aal5 100 50
 skrá tf-efg 100 200
 prenta allt
-    AAL5, hradi: 100 hn, fjarl.: 50 sm, tími: 30 mín.
-    TF-EFG, hradi: 100 hn, fjarl.: 200 sm, tími: 120 mín.
-    TF-ICE, hradi: 200 hn, fjarl.: 500 sm, tími: 150 mín.
-    TF-ABC, hradi: 100 hn, fjarl.: 300 sm, tími: 180 mín.
+    AAL5, hraði: 100 hn, fjarl.: 50 sm, tími: 30 mín.
+    TF-EFG, hraði: 100 hn, fjarl.: 200 sm, tími: 120 mín.
+    TF-ICE, hraði: 200 hn, fjarl.: 500 sm, tími: 150 mín.
+    TF-ABC, hraði: 100 hn, fjarl.: 300 sm, tími: 180 mín.
 prenta 250 # prentar aðeins flugvélar sem eru innan 250 sm. frá flugvelli
-    AAL5, hradi: 100 hn, fjarl.: 50 sm, tími: 30 mín.
-    TF-EFG, hradi: 100 hn, fjarl.: 200 sm, tími: 120 mín.
+    AAL5, hraði: 100 hn, fjarl.: 50 sm, tími: 30 mín.
+    TF-EFG, hraði: 100 hn, fjarl.: 200 sm, tími: 120 mín.
 uppfæra 40 # lætur 40 mínútur líða
 prenta allt # AAL5 farin úr listanum
-    TF-EFG, hradi: 100 hn, fjarl.: 134 sm, tími: 80 mín.
-    TF-ICE, hradi: 200 hn, fjarl.: 367 sm, tími: 110 mín.
-    TF-ABC, hradi: 100 hn, fjarl.: 234 sm, tími: 140 mín.
+    TF-EFG, hraði: 100 hn, fjarl.: 134 sm, tími: 80 mín.
+    TF-ICE, hraði: 200 hn, fjarl.: 367 sm, tími: 110 mín.
+    TF-ABC, hraði: 100 hn, fjarl.: 234 sm, tími: 140 mín.
 ```
 
 
