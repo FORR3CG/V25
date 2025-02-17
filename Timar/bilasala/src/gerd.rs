@@ -17,13 +17,12 @@ impl Display for Gerd {
 
 impl TryFrom<&str> for Gerd {
     type Error = String;
-    
+
     fn try_from(value: &str) -> Result<Self, Self::Error> {
         match value.to_lowercase().trim() {
             "f" | "fb" => Ok(Self::Folksbill),
             "j" => Ok(Self::Jeppi),
-            _ => Err(format!("Get ekki breytt {} í gerð!", value))
+            _ => Err(format!("Get ekki breytt {} í gerð!", value)),
         }
     }
-    
 }

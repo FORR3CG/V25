@@ -24,26 +24,36 @@ impl Bilasala {
 
     pub fn skra(&mut self, framleidandi: &str, gerd: &str, verd: u32) -> Result<(), String> {
         let nytt_id = self.next_id();
-        self.bilar.push(Bill::new(nytt_id, framleidandi, gerd, verd)?);
+        self.bilar
+            .push(Bill::new(nytt_id, framleidandi, gerd, verd)?);
+        self.bilar.sort();
+        Ok(())
+    }
+
+    // (1002, "bmw f 200000")
+    pub fn skra_2(&mut self, bill: &str) -> Result<(), String> {
+        let id = self.next_id();
+        // "1005 bmw f 200000"
+        //self.bilar.push(Bill::try_from(format!("{} {}", id, bill).as_str())?);
+        self.bilar.push(Bill::try_from((id, bill))?);
         self.bilar.sort();
         Ok(())
     }
 
     pub fn verdmaeti(&self) -> u64 {
-/*         let mut heildar_verd = 0_u64;
+        /*         let mut heildar_verd = 0_u64;
         for bill in &self.bilar {
-           heildar_verd += bill.verd() as u64; 
+           heildar_verd += bill.verd() as u64;
         }
         heildar_verd */
 
-        self
-            .bilar
+        self.bilar
             .iter()
             .fold(0, |summa, bill| summa + bill.verd as u64)
     }
 
     pub fn afskra(&mut self, id: u32) -> Result<(), String> {
-/*         let mut eyda_id = -1_i32;
+        /*         let mut eyda_id = -1_i32;
         let mut idx = 0;
         for bill in &self.bilar {
             if bill.id == id {
@@ -67,7 +77,7 @@ impl Bilasala {
     }
 
     pub fn prenta_bil(&self, id: u32) -> Result<&Bill, String> {
-/*         for bill in &self.bilar {
+        /*         for bill in &self.bilar {
             if bill.id == id {
                 println!("{}", bill);
                 return;
@@ -75,21 +85,19 @@ impl Bilasala {
         }
         println!("Fann engan bíl með id: {}", id) */
 
-
-/*         match self.bilar.iter().find(|bill| bill.id == id) {
+        /*         match self.bilar.iter().find(|bill| bill.id == id) {
             Some(b) => Ok(b),
             None => Err(format!("Fann ekki bíl með id: {}", id)),
         } */
-       // EÐA
-       self
-          .bilar
-          .iter()
-          .find(|b| b.id == id)
-          .ok_or(format!("Fann ekki bíl með id: {}", id))
+        // EÐA
+        self.bilar
+            .iter()
+            .find(|b| b.id == id)
+            .ok_or(format!("Fann ekki bíl með id: {}", id))
     }
 
     pub fn prenta_gerd(&self, gerd: &str) -> Result<Vec<&Bill>, String> {
-/*         let gerd = Gerd::try_from(gerd)?;
+        /*         let gerd = Gerd::try_from(gerd)?;
         for bill in &self.bilar {
             if bill.gerd == gerd {
                 println!("{}", bill);
@@ -98,37 +106,34 @@ impl Bilasala {
         Ok(()) */
 
         let gerd = Gerd::try_from(gerd)?;
-        Ok(
-            self
-            .bilar
-            .iter()
-            .filter(|b| b.gerd == gerd)
-            .collect()
-        )
-
+        Ok(self.bilar.iter().filter(|b| b.gerd == gerd).collect())
     }
 
     pub fn breyta_verdi(&mut self, prosentubreyting: f32) {
-        self
-            .bilar
+        self.bilar
             .iter_mut()
-            .for_each(|b| 
-                b.verd = (b.verd as f32 * (1. + prosentubreyting / 100.)) as u32)
+            .for_each(|b| b.verd = (b.verd as f32 * (1. + prosentubreyting / 100.)) as u32)
     }
 }
 
 impl Display for Bilasala {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         let mut texti = self
-                                    .bilar
-                                    .iter()
-                                    .map(|b| b.to_string())
-                                    .collect::<Vec<String>>()
-                                    .join("\n");
+            .bilar
+            .iter()
+            .map(|b| b.to_string())
+            .collect::<Vec<String>>()
+            .join("\n");
 
         let medalverd = self.verdmaeti() as f32 / self.bilar.len() as f32;
-        texti.push_str(format!("\nHeildar verðmæti: {}, meðalverð: {:.2}", 
-                                       self.verdmaeti(), medalverd).as_str());  
-        writeln!(f, "{}", texti)   
+        texti.push_str(
+            format!(
+                "\nHeildar verðmæti: {}, meðalverð: {:.2}",
+                self.verdmaeti(),
+                medalverd
+            )
+            .as_str(),
+        );
+        writeln!(f, "{}", texti)
     }
 }
