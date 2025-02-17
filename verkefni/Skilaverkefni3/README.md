@@ -15,7 +15,7 @@ Síðan eru flugvélarnar geymdar í lista (Vec) sem er raðaður eftir hversu m
 
 Listinn þarf að eiga föll til að skrá flugvél, prenta allar flugvélar, prenta flugvélar sem eru innan ákveðinnar fjarlægðar og svo fall sem uppfærir staðsetningu flugvéla eftir upphefinn mínútufjölda.
 
-Gerðu svo snyrtilegt notendaviðmót með góðri **villumeðhöndlun**.
+Gerðu svo snyrtilegt notendaviðmót (sambærilegt við bílasöluna) með góðri **villumeðhöndlun**.
 
 Fyrir flugvél útfæra `Display`, `PartialEq`, `PartialOrd`, `Ord` og `TryFrom`.
 
