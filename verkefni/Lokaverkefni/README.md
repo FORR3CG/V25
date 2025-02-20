@@ -71,7 +71,7 @@ Búnaður:
 - Hafðu hvert struct og enum í sér skrá.
 - Annað sem eðlilegt getur verið að hafa.
 
-Listin:
+Listinn:
 
 - Úfærðu struct fyrir listann en listinn heldur líka utan um hvaða auðkenni (id) hver hlutur fær.
   - Það þarf að vera hægt að skrá búnað í listann.
