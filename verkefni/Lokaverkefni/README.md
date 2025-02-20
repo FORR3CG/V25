@@ -9,7 +9,7 @@
   - [Verkefnið](#verkefnið)
     - [Búnaðarlisti Tækniskólans](#búnaðarlisti-tækniskólans)
     - [Grunnkröfur](#grunnkröfur)
-    - [Dæmi um aukakröfur](#dæmi-um-aukakröfur)
+    - [Aukakröfur](#aukakröfur)
 
 ## Almennar reglur varðandi verkefnið
 
