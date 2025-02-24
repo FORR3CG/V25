@@ -1,8 +1,13 @@
 use std::fmt::Display;
 
+use serde::{Deserialize, Serialize};
+use std::io::{Read, Write};
+
 trait Dyrin {
     fn segir(&self);
 }
+
+#[derive(Deserialize, Serialize)]
 struct Hundur {
     nafn: String,
     hlydnieinkunn: u32,
@@ -29,6 +34,7 @@ impl Display for Hundur {
     }
 }
 
+#[derive(Deserialize, Serialize)]
 struct Kottur {
     nafn: String,
     aldur: u8,
@@ -55,6 +61,7 @@ impl Display for Kottur {
     }
 }
 
+#[derive(Deserialize, Serialize)]
 enum Dyr {
     Kotturinn(Kottur),
     Hundurinn(Hundur),
@@ -69,6 +76,7 @@ impl Display for Dyr {
     }
 }
 
+#[derive(Deserialize, Serialize)]
 struct Dyragardur {
     dyrin: Vec<Dyr>,
 }
@@ -103,7 +111,27 @@ impl Dyragardur {
 }
 
 fn main() {
-    let mut dyr: Vec<Dyr> = Vec::new();
+    let mut dg = Dyragardur::new();
+    dg.skra_hund(Hundur::new("Snati", 9));
+    dg.skra_kott(Kottur::new("Grettir", 20));
+
+    // búa til json og skrifa í skrá
+/*     let json_gogn = serde_json::to_string_pretty(&dg).unwrap(); // 
+    println!("{}", json_gogn);
+    let mut skra = std::fs::File::create("gogn.json").unwrap();
+    write!(skra, "{}", json_gogn); */
+
+    // lesa json skrá og búa til dýragarð
+    let mut skra = std::fs::File::open("gogn.json").unwrap();
+    let mut fra_skra = String::new();
+    skra.read_to_string(&mut fra_skra).unwrap();
+    println!("{}", fra_skra);
+    let mut dg2 = serde_json::from_str::<Dyragardur>(&fra_skra).unwrap();
+    dg2.prenta_hunda();
+
+
+
+/*     let mut dyr: Vec<Dyr> = Vec::new();
     dyr.push(Dyr::Hundurinn(Hundur::new("Snati", 9)));
     dyr.push(Dyr::Kotturinn(Kottur::new("Grettir", 20)));
 
@@ -112,15 +140,15 @@ fn main() {
             Dyr::Kotturinn(kottur) => println!("{}", kottur),
             Dyr::Hundurinn(hundur) => println!("{}", hundur),
         }
-    });
+    }); */
 
     // usize
     //let dyrin = vec![Hundur::new("Snati", 8), Kottur::new("Grettir", 20)];
-    let mut dyrin: Vec<Box<dyn Dyrin>> = Vec::new();
+/*     let mut dyrin: Vec<Box<dyn Dyrin>> = Vec::new();
 
     dyrin.push(Box::new(Hundur::new("Snati", 7)));
     dyrin.push(Box::new(Kottur::new("Grettir", 20)));
-    dyrin.iter().for_each(|d| d.segir());
+    dyrin.iter().for_each(|d| d.segir()); */
 
 
 }
