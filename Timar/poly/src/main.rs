@@ -110,6 +110,9 @@ impl Dyragardur {
     }
 }
 
+// fyrir json: keyra: cargo add serde -F derive
+//                    cargo add serde_json
+
 fn main() {
     let mut dg = Dyragardur::new();
     dg.skra_hund(Hundur::new("Snati", 9));
